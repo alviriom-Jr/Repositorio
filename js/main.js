@@ -335,7 +335,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --------------------------------------------------------------------------
-       6. REGISTRO DE SERVICE WORKER (PWA)
+       6. BOTÓN DE INSTALACIÓN PWA & SOPORTE PARA IOS
+       -------------------------------------------------------------------------- */
+    let deferredPrompt;
+    const installPwaBtn = document.getElementById('install-pwa-btn');
+    const iosInstallInstruction = document.getElementById('ios-install-instruction');
+
+    // Detectar si el dispositivo es iOS (iPhone/iPad)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // Mostrar instrucciones de iOS si no está en modo standalone
+    if (isIOS && iosInstallInstruction) {
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+        if (!isStandalone) {
+            iosInstallInstruction.classList.remove('hidden');
+        }
+    }
+
+    // Capturar el evento de instalación de navegadores Chromium (Android, Chrome, Edge)
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); // Prevenir el banner automático del navegador
+        deferredPrompt = e;  // Guardar el evento para dispararlo luego
+
+        // Mostrar nuestro botón de instalación
+        if (installPwaBtn) {
+            installPwaBtn.classList.remove('hidden');
+        }
+    });
+
+    if (installPwaBtn) {
+        installPwaBtn.addEventListener('click', () => {
+            if (!deferredPrompt) return;
+
+            // Mostrar el prompt de instalación
+            deferredPrompt.prompt();
+
+            // Evaluar la elección del usuario
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('[PWA] El usuario aceptó la instalación.');
+                } else {
+                    console.log('[PWA] El usuario rechazó la instalación.');
+                }
+                deferredPrompt = null;
+                installPwaBtn.classList.add('hidden'); // Ocultar el botón
+            });
+        });
+    }
+
+    // Ocultar botón e instrucciones si la app ya está instalada
+    window.addEventListener('appinstalled', () => {
+        console.log('[PWA] Aplicación instalada con éxito.');
+        if (installPwaBtn) installPwaBtn.classList.add('hidden');
+        if (iosInstallInstruction) iosInstallInstruction.classList.add('hidden');
+    });
+
+
+    /* --------------------------------------------------------------------------
+       7. REGISTRO DE SERVICE WORKER (PWA)
        -------------------------------------------------------------------------- */
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {

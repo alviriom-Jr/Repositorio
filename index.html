@@ -311,6 +311,14 @@
                             <h3>Programar Alarma</h3>
                             <p>Ingresa los detalles. Asegúrate de habilitar los permisos de notificación usando el botón inferior.</p>
                         </div>
+
+                        <!-- Botón de instalación PWA (oculto por defecto) -->
+                        <button id="install-pwa-btn" class="btn btn-primary btn-install-pwa hidden">
+                            <span class="download-icon" style="margin-right:8px;">📥</span> Descargar Web App
+                        </button>
+                        <p id="ios-install-instruction" class="pwa-ios-instruction hidden">
+                            💡 Para instalar en **iPhone (iOS)**: Toca el icono de <strong>Compartir</strong> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;margin:0 2px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> en Safari y elige <strong>"Agregar al inicio"</strong>.
+                        </p>
                         
                         <form id="reminder-form" class="reminder-form">
                             <div class="form-group">
