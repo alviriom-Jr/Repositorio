@@ -13,6 +13,10 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8B5CF6">
 </head>
 <body>
 
@@ -30,6 +34,7 @@
                     <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
                     <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
                     <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="#recordatorios" class="nav-link">Recordatorios</a></li>
                 </ul>
             </nav>
 
@@ -289,6 +294,64 @@
             </div>
         </section>
 
+        <!-- Reminders Section -->
+        <section class="reminders" id="recordatorios">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Organízate con Marco</span>
+                    <h2 class="section-title">Recordatorios Activos</h2>
+                    <p class="section-desc">Programa alarmas para tus llamadas de marketing, lanzamientos o reuniones. Recibirás alertas sonoras, vibración y notificaciones nativas en tu dispositivo móvil.</p>
+                </div>
+
+                <div class="reminders-container">
+                    <!-- Configuración y Formulario -->
+                    <div class="reminders-form-block">
+                        <div class="pwa-info">
+                            <span class="pwa-status-badge">Web App PWA</span>
+                            <h3>Programar Alarma</h3>
+                            <p>Ingresa los detalles. Asegúrate de habilitar los permisos de notificación usando el botón inferior.</p>
+                        </div>
+                        
+                        <form id="reminder-form" class="reminder-form">
+                            <div class="form-group">
+                                <label for="reminder-title" class="form-label">Nombre del recordatorio</label>
+                                <input type="text" id="reminder-title" class="form-input" placeholder="Ej: Llamada con Marco, Lanzamiento Ads..." required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="reminder-date" class="form-label">Fecha</label>
+                                    <input type="date" id="reminder-date" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reminder-time" class="form-label">Hora</label>
+                                    <input type="time" id="reminder-time" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span>Programar Recordatorio</span>
+                            </button>
+                        </form>
+
+                        <button id="enable-notifications" class="btn btn-secondary btn-notifications-enable">
+                            <span class="bell-icon">🔔</span> Habilitar Notificaciones y Sonido
+                        </button>
+                    </div>
+
+                    <!-- Lista de recordatorios -->
+                    <div class="reminders-list-block">
+                        <h3>Tus Recordatorios Programados</h3>
+                        <div id="reminders-list" class="reminders-list">
+                            <div class="reminders-empty">
+                                <p>No tienes recordatorios programados. ¡Agrega el primero arriba!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section class="contact" id="contacto">
             <div class="container contact-container">
@@ -406,6 +469,7 @@
                     <li><a href="#portafolio">Portafolio</a></li>
                     <li><a href="#sobre-mi">Sobre Mí</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#recordatorios">Recordatorios</a></li>
                 </ul>
             </div>
 
